@@ -2,6 +2,11 @@
 
 A private native SwiftUI journal for iOS 17 and later. The app is focused on morning and evening reflection, free writing, dates, and finding earlier entries.
 
+This repository is Journal's canonical source and issue tracker. It was
+history-preservingly extracted from Significant Hobbies; the Hub and shared
+`PersonalSyncKit` package remain in
+[`Significant-Hobbies/significanthobbies`](https://github.com/Significant-Hobbies/significanthobbies).
+
 The existing `com.significanthobbies.app` identity and local document remain unchanged so current entries survive the split. Live and Habits records stay preserved in the compatible archive but are no longer exposed or edited by the Journal interface. Account sync remains revisioned and optional; the app is fully useful offline. When signed in, saved writing also enters the shared Cloudflare Personal Platform through `PersonalSyncKit` without replacing the compatible local atlas document.
 
 ## Local checks
