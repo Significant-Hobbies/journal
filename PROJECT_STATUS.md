@@ -15,8 +15,9 @@ offline and optionally synchronizes through the Significant Hobbies Hub.
 - Apple bundle identifier remains `com.significanthobbies.app`; existing local
   atlas data is unchanged.
 - `PersonalSyncKit` resolves from `Significant-Hobbies/significanthobbies`.
-- Build 1.0.0 (4) previously completed processing and owner assignment in the
-  internal Personal Testing group.
+- Build 1.0.0 (5), containing the customer-facing account/archive copy cleanup,
+  completed App Store Connect processing and entered internal beta testing on
+  2026-08-23. Delivery UUID: `0320103d-4870-432a-991d-9b1ca20d5bef`.
 
 ## Next
 
