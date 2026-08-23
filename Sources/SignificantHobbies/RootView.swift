@@ -16,6 +16,7 @@ struct RootView: View {
                     JournalOnboardingView {
                         onboardingCompleted = true
                         isOnboardingSessionActive = false
+                        model.dismissOnboarding()
                     }
                     .onAppear { isOnboardingSessionActive = true }
                 } else {

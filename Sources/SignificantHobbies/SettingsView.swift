@@ -109,6 +109,13 @@ struct SettingsView: View {
                     }
                     settingsSection("About") {
                         LabeledContent("Version", value: appVersion)
+                        Button {
+                            dismiss()
+                            model.replayOnboarding()
+                        } label: {
+                            Label("Replay onboarding", systemImage: "arrow.counterclockwise.circle")
+                                .frame(maxWidth: .infinity, minHeight: 48, alignment: .leading)
+                        }
                         Link("Privacy", destination: URL(string: "https://journal.significanthobbies.com/privacy/")!).frame(minHeight: 44)
                         Link("Support", destination: URL(string: "https://journal.significanthobbies.com/support/")!).frame(minHeight: 44)
                     }
