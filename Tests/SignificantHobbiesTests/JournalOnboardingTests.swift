@@ -16,6 +16,6 @@ final class JournalOnboardingTests: XCTestCase {
     func testCompletionAndForcedEvidenceAreExplicit() {
         XCTAssertFalse(JournalOnboardingPolicy.shouldPresent(completed: true, entries: []))
         XCTAssertTrue(JournalOnboardingPolicy.shouldPresent(completed: false, entries: [], forced: true))
-        XCTAssertFalse(JournalOnboardingPolicy.shouldPresent(completed: true, entries: [], forced: true))
+        XCTAssertTrue(JournalOnboardingPolicy.shouldPresent(completed: true, entries: [], forced: true))
     }
 }

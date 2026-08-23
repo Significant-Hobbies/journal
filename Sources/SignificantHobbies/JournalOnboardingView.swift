@@ -25,7 +25,7 @@ enum JournalOnboardingPolicy {
         entries: [DailyEntry],
         forced: Bool = false
     ) -> Bool {
-        if forced { return !completed }
+        if forced { return true }
         guard !completed else { return false }
         return !entries.contains { entry in
             !entry.journal.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -106,6 +106,13 @@ struct JournalOnboardingView: View {
 
     private var promise: some View {
         VStack(alignment: .leading, spacing: 26) {
+            Image("JournalOnboarding")
+                .resizable()
+                .scaledToFit()
+                .frame(maxHeight: 220)
+                .frame(maxWidth: .infinity)
+                .accessibilityLabel("A hand-drawn figure stitches one tangled thought into a private journal page.")
+
             VStack(alignment: .leading, spacing: 14) {
                 Text("A private room for what matters.")
                     .font(.system(.largeTitle, design: .serif, weight: .medium))
@@ -132,6 +139,9 @@ struct JournalOnboardingView: View {
 
             Button("Begin privately") { advance(to: .invitation) }
                 .buttonStyle(AtlasPrimaryButtonStyle())
+
+            Button("Open Journal first") { completion() }
+                .frame(maxWidth: .infinity, minHeight: 44)
         }
     }
 

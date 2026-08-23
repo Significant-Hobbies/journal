@@ -83,6 +83,16 @@ final class AppModel {
         )
     }
 
+    func replayOnboarding() {
+        JournalOnboardingPreferences.reset()
+        forceJournalOnboarding = true
+        isSettingsPresented = false
+    }
+
+    func dismissOnboarding() {
+        forceJournalOnboarding = false
+    }
+
     @discardableResult
     func saveDaily(_ entry: DailyEntry, announceSuccess: Bool = true) async -> Bool {
         guard await mutate({ $0.saveDaily(entry) }) else { return false }
