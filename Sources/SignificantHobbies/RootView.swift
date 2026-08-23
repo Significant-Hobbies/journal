@@ -26,7 +26,7 @@ struct RootView: View {
                     ContentUnavailableView(
                         "Journal could not open your archive",
                         systemImage: "exclamationmark.triangle",
-                        description: Text("Your existing file was left untouched. Restart Journal or restore a compatible archive before writing.")
+                        description: Text("Your existing file was left untouched. Restart Journal or restore a Journal archive before writing.")
                     )
                     Button("Open recovery settings") { model.isSettingsPresented = true }
                         .buttonStyle(.borderedProminent)

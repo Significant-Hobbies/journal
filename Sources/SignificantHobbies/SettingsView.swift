@@ -33,7 +33,7 @@ struct SettingsView: View {
                                 .font(.caption2.weight(.black))
                                 .foregroundStyle(AtlasPalette.quietInk)
                         }
-                        Text("Journal stays immediate on this device and syncs its typed entries through your shared Significant Hobbies account.")
+                        Text("Journal stays immediate on this device. Connect your Significant Hobbies account to keep your entries in sync across devices.")
                             .font(.subheadline).foregroundStyle(AtlasPalette.quietInk)
                         if model.isAccountBusy {
                             HStack(spacing: 10) {
@@ -54,7 +54,7 @@ struct SettingsView: View {
                                 }
                             }
                             Button { Task { await model.syncNow() } } label: {
-                                Label("Sync compatible archive", systemImage: "arrow.triangle.2.circlepath")
+                                Label("Sync Journal now", systemImage: "arrow.triangle.2.circlepath")
                             }
                             .buttonStyle(AtlasPrimaryButtonStyle())
                             if !model.hasAppleAccount {
@@ -80,11 +80,11 @@ struct SettingsView: View {
                         }
                     }
                     settingsSection("Your data") {
-                        ShareLink(item: AtlasExportPayload(document: model.document), preview: SharePreview("Compatible archive")) {
-                            Label("Export compatible archive", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity, alignment: .leading)
+                        ShareLink(item: AtlasExportPayload(document: model.document), preview: SharePreview("Journal archive")) {
+                            Label("Export Journal archive", systemImage: "square.and.arrow.up").frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .frame(minHeight: 48)
-                        Text("The archive keeps Journal writing plus preserved pre-split Live and Habits records so nothing is stranded.")
+                        Text("Export keeps a private copy you can restore later. Other Significant Hobbies data already stored in the archive remains intact.")
                             .font(.caption)
                             .foregroundStyle(AtlasPalette.quietInk)
                         Button { isImporterPresented = true } label: {
@@ -123,11 +123,11 @@ struct SettingsView: View {
             defer { if accessed { url.stopAccessingSecurityScopedResource() } }
             if let data = try? Data(contentsOf: url) { Task { await model.prepareImport(data) } }
         }
-        .alert("Replace your compatible archive?", isPresented: $model.isImportConfirmationPresented) {
+        .alert("Replace your Journal archive?", isPresented: $model.isImportConfirmationPresented) {
             Button("Replace", role: .destructive) { Task { await model.confirmImport() } }
             Button("Cancel", role: .cancel) { model.importPreview = nil }
         } message: {
-            Text("The import contains \(model.importPreview?.dailyEntries.count ?? 0) Journal entries. Preserved split-product data stays in the archive.")
+            Text("The import contains \(model.importPreview?.dailyEntries.count ?? 0) Journal entries. Other Significant Hobbies data in the imported archive remains intact.")
         }
         .confirmationDialog(resetDialogTitle, isPresented: $showReset) {
             Button("Clear Journal writing", role: .destructive) { Task { await model.clearJournalWriting() } }
@@ -158,8 +158,8 @@ struct SettingsView: View {
 
     private var resetDialogMessage: String {
         !model.isAccountConnected
-            ? "This clears Journal writing from this device while preserving compatible Live and Habits records."
-            : "This clears Journal writing from this device and pushes the change to your synced archive. Compatible Live and Habits records are preserved."
+            ? "This clears Journal writing from this device. Other Significant Hobbies data in your archive remains intact."
+            : "This clears Journal writing from this device and your synced Journal archive. Other Significant Hobbies data remains intact."
     }
 
     private var appleAccountButton: some View {
