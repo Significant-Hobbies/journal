@@ -109,7 +109,7 @@ final class AppModel {
             isDataAvailable = true
             self.importPreview = nil
             isImportConfirmationPresented = false
-            message = "Compatible archive replaced."
+            message = "Journal archive replaced."
             await enqueueJournalChanges(from: previous, to: importPreview)
         } catch { message = error.localizedDescription }
     }

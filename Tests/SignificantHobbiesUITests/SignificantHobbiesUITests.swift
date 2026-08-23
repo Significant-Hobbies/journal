@@ -142,7 +142,12 @@ final class SignificantHobbiesUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["ACCOUNT & SYNC"].waitForExistence(timeout: 3))
         XCTAssertTrue(app.staticTexts["SYNCED"].exists)
         XCTAssertTrue(app.staticTexts["Journal entries: always private"].exists)
-        XCTAssertTrue(app.buttons["Export compatible archive"].exists)
+        XCTAssertTrue(app.buttons["Export Journal archive"].exists)
+        XCTAssertTrue(app.buttons["Sync Journal now"].exists)
+        XCTAssertTrue(app.staticTexts["Export keeps a private copy you can restore later. Other Significant Hobbies data already stored in the archive remains intact."].exists)
+        XCTAssertFalse(app.staticTexts.matching(NSPredicate(format: "label CONTAINS[c] %@", "compatible archive")).firstMatch.exists)
+        XCTAssertFalse(app.staticTexts.matching(NSPredicate(format: "label CONTAINS[c] %@", "pre-split")).firstMatch.exists)
+        XCTAssertFalse(app.staticTexts.matching(NSPredicate(format: "label CONTAINS[c] %@", "typed entries")).firstMatch.exists)
         XCTAssertTrue(app.buttons["Delete Journal cloud data"].exists)
     }
 
