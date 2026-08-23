@@ -83,12 +83,6 @@ final class AppModel {
         )
     }
 
-    func replayOnboarding() {
-        JournalOnboardingPreferences.reset()
-        forceJournalOnboarding = true
-        isSettingsPresented = false
-    }
-
     func dismissOnboarding() {
         forceJournalOnboarding = false
     }

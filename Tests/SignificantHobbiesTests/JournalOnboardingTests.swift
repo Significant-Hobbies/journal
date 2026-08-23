@@ -8,9 +8,10 @@ final class JournalOnboardingTests: XCTestCase {
         XCTAssertTrue(JournalOnboardingPolicy.shouldPresent(completed: false, entries: []))
     }
 
-    func testExistingWritingBypassesOnboarding() {
+    func testExistingWritingReceivesIllustratedOnboardingOnce() {
         let entry = DailyEntry(date: .now, journal: "Already here")
-        XCTAssertFalse(JournalOnboardingPolicy.shouldPresent(completed: false, entries: [entry]))
+        XCTAssertTrue(JournalOnboardingPolicy.shouldPresent(completed: false, entries: [entry]))
+        XCTAssertFalse(JournalOnboardingPolicy.shouldPresent(completed: true, entries: [entry]))
     }
 
     func testCompletionAndForcedEvidenceAreExplicit() {
