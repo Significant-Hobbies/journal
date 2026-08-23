@@ -9,7 +9,7 @@ enum JournalOnboardingStep: Int, CaseIterable {
 }
 
 enum JournalOnboardingPreferences {
-    static let completedKey = "journal-onboarding-completed-v1"
+    static let completedKey = "journal-illustrated-onboarding-seen-v1"
     static let stepKey = "journal-onboarding-step-v1"
     static let invitationKey = "journal-onboarding-invitation-v1"
     static let draftKey = "journal-onboarding-draft-v1"
@@ -22,16 +22,11 @@ enum JournalOnboardingPreferences {
 enum JournalOnboardingPolicy {
     static func shouldPresent(
         completed: Bool,
-        entries: [DailyEntry],
+        entries _: [DailyEntry],
         forced: Bool = false
     ) -> Bool {
         if forced { return true }
-        guard !completed else { return false }
-        return !entries.contains { entry in
-            !entry.journal.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-                || !entry.morningReflection.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-                || !entry.eveningReflection.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-        }
+        return !completed
     }
 }
 

@@ -6,7 +6,7 @@ final class SignificantHobbiesUITests: XCTestCase {
 
     func testJournalIsTheOnlyPrimarySurface() {
         let app = XCUIApplication()
-        app.launchArguments = ["--fresh-demo"]
+        app.launchArguments = ["--fresh-demo", "-journal-illustrated-onboarding-seen-v1", "YES"]
         app.launch()
 
         XCTAssertTrue(app.staticTexts["A private ritual. Nothing written here can be published."].waitForExistence(timeout: 3))
@@ -60,12 +60,13 @@ final class SignificantHobbiesUITests: XCTestCase {
         XCTAssertTrue((restored.value as? String)?.contains("Keep this unfinished thought.") == true)
     }
 
-    func testExistingWritingBypassesOnboarding() {
+    func testExistingWritingReceivesIllustratedOnboardingOnce() {
         let app = XCUIApplication()
         app.launchArguments = ["--fresh-demo", "--reset-onboarding"]
         app.launch()
 
-        XCTAssertFalse(app.staticTexts["A private room for what matters."].exists)
+        XCTAssertTrue(app.staticTexts["A private room for what matters."].waitForExistence(timeout: 3))
+        app.buttons["Open Journal first"].tap()
         XCTAssertTrue(app.textViews["Private journal"].waitForExistence(timeout: 3))
     }
 
@@ -89,7 +90,7 @@ final class SignificantHobbiesUITests: XCTestCase {
 
     func testDailyJournalSavesPrivately() {
         let app = XCUIApplication()
-        app.launchArguments = ["--fresh-demo"]
+        app.launchArguments = ["--fresh-demo", "-journal-illustrated-onboarding-seen-v1", "YES"]
         app.launch()
         let journal = app.textViews["Private journal"]
         XCTAssertTrue(journal.waitForExistence(timeout: 3))
@@ -103,7 +104,7 @@ final class SignificantHobbiesUITests: XCTestCase {
 
     func testDirtyDraftSurvivesDateNavigation() {
         let app = XCUIApplication()
-        app.launchArguments = ["--fresh-demo"]
+        app.launchArguments = ["--fresh-demo", "-journal-illustrated-onboarding-seen-v1", "YES"]
         app.launch()
         let journal = app.textViews["Private journal"]
         XCTAssertTrue(journal.waitForExistence(timeout: 3))
@@ -120,7 +121,7 @@ final class SignificantHobbiesUITests: XCTestCase {
 
     func testJournalArchiveCanOpenAnEntry() {
         let app = XCUIApplication()
-        app.launchArguments = ["--fresh-demo"]
+        app.launchArguments = ["--fresh-demo", "-journal-illustrated-onboarding-seen-v1", "YES"]
         app.launch()
 
         app.swipeUp()
@@ -136,7 +137,10 @@ final class SignificantHobbiesUITests: XCTestCase {
 
     func testAccountScreenExplainsPrivateSyncAndExportRecovery() {
         let app = XCUIApplication()
-        app.launchArguments = ["--fresh-demo", "--account-demo"]
+        app.launchArguments = [
+            "--fresh-demo", "--account-demo",
+            "-journal-illustrated-onboarding-seen-v1", "YES",
+        ]
         app.launch()
 
         XCTAssertTrue(app.staticTexts["ACCOUNT & SYNC"].waitForExistence(timeout: 3))
@@ -153,7 +157,7 @@ final class SignificantHobbiesUITests: XCTestCase {
 
     func testAccountScreenOffersAppleBeforeGoogle() {
         let app = XCUIApplication()
-        app.launchArguments = ["--fresh-demo"]
+        app.launchArguments = ["--fresh-demo", "-journal-illustrated-onboarding-seen-v1", "YES"]
         app.launch()
 
         app.buttons["Profile and settings"].tap()
