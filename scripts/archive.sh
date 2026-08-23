@@ -19,6 +19,6 @@ xcodegen generate
 arguments=()
 if [[ "$allow_updates" == "YES" ]]; then arguments=(-allowProvisioningUpdates); fi
 xcodebuild archive -project SignificantHobbies.xcodeproj -scheme SignificantHobbies -configuration Release -destination 'generic/platform=iOS' -archivePath "$archive_path" "${arguments[@]}" DEVELOPMENT_TEAM="$development_team"
-codesign --verify --deep --strict "$archive_path/Products/Applications/Significant Hobbies.app"
+codesign --verify --deep --strict "$archive_path/Products/Applications/Journal by Significant Hobbies.app"
 print "Created and verified local archive at $archive_path"
 print "No upload or App Store Connect operation was performed."

@@ -11,6 +11,12 @@ struct SettingsView: View {
     @State private var showReset = false
     @State private var showDeleteCloudData = false
 
+    private var appVersion: String {
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "—"
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "—"
+        return "\(version) (\(build))"
+    }
+
     var body: some View {
         @Bindable var model = model
         NavigationStack {
@@ -102,7 +108,7 @@ struct SettingsView: View {
                             .font(.subheadline).foregroundStyle(AtlasPalette.quietInk)
                     }
                     settingsSection("About") {
-                        LabeledContent("Version", value: "1.0.0 (3)")
+                        LabeledContent("Version", value: appVersion)
                         Link("Privacy", destination: URL(string: "https://journal.significanthobbies.com/privacy/")!).frame(minHeight: 44)
                         Link("Support", destination: URL(string: "https://journal.significanthobbies.com/support/")!).frame(minHeight: 44)
                     }
