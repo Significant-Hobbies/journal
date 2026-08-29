@@ -1,0 +1,106 @@
+{
+  "$schema": "fleet.design-review.v1",
+  "version": 1,
+  "project": "journal",
+  "target": "Private native journal landing and internal beta entry",
+  "surfaceMode": "persuade",
+  "mode": "preserve",
+  "register": "product",
+  "context": {
+    "product": "PROJECT_STATUS.md",
+    "design": "README.md"
+  },
+  "direction": {
+    "references": [],
+    "probes": [],
+    "selected": "private-day-ledger",
+    "approval": "not-required",
+    "before": "artifacts/design/before.png",
+    "library": {
+      "strategy": "upstream-first",
+      "primary": "existing-project-system",
+      "sources": [],
+      "runtime": "existing",
+      "customReplacement": {
+        "used": false,
+        "authorization": "not-required",
+        "reason": ""
+      }
+    },
+    "contract": {
+      "purpose": "Explain Journal as a private iPhone practice for morning reflection, evening reflection, free writing, and returning to earlier days.",
+      "purposeSource": "site-health/docs/project-dossiers/journal.yaml plus PROJECT_STATUS.md, README.md, and current Swift source",
+      "canonicalPurpose": "Journal makes private daily writing and reflection durable enough to become a real personal practice.",
+      "purposeAlignment": "match",
+      "driftNote": "",
+      "audience": "An iPhone user who wants a quiet, device-first journal inside the Significant Hobbies family.",
+      "job": "Show the daily writing loop, the local archive, optional private sync, recovery controls, current beta access, and firm non-public boundaries.",
+      "thesis": "A day is easy to rewrite after it passes; one dated private page keeps the version the writer actually lived.",
+      "system": "Soft editorial landing with a real iPhone screen, dated-paper geometry, a three-part writing loop, fit boundaries, privacy, beta status, project strip, and Ask AI footer.",
+      "signature": "The real Today screen appears as a page laid over a gridded writing surface beside the opening promise.",
+      "risk": "Avoid iPad, publishing, mood scoring, therapy, AI interpretation, public download, and permanent pricing claims."
+    }
+  },
+  "evidence": {
+    "screenshots": [
+      {
+        "width": 390,
+        "path": ".fleet/evidence/landing-audit/after-390.png"
+      },
+      {
+        "width": 768,
+        "path": ".fleet/evidence/landing-audit/after-768.png"
+      },
+      {
+        "width": 1440,
+        "path": ".fleet/evidence/landing-audit/after-1440.png"
+      }
+    ],
+    "projectCheck": {
+      "command": "./scripts/check.sh",
+      "status": "pass"
+    },
+    "critique": {
+      "score": 38,
+      "maximum": 40
+    },
+    "audit": {
+      "score": 19,
+      "maximum": 20
+    },
+    "unresolved": {
+      "p0": 0,
+      "p1": 0
+    },
+    "detector": {
+      "posture": "advisory",
+      "findings": []
+    },
+    "comprehension": {
+      "status": "pass",
+      "reviewer": "Codex fresh-visitor purpose readback",
+      "answers": {
+        "product": "A private, device-first iPhone journal for one dated page of morning, evening, and free writing.",
+        "audience": "Someone who wants a quiet daily writing habit without a public profile, streak, score, or AI interpretation.",
+        "value": "It keeps the day as it was written and makes earlier entries easy to revisit while the archive remains under the writer's control.",
+        "mechanism": "Today combines morning and evening rituals with free writing; date navigation, export, import preview, and optional account sync preserve the archive.",
+        "proof": "The page uses real native Today, first-entry, and archive/account screens and names the exact privacy controls.",
+        "nextAction": "Inspect the real screens or read the honest internal TestFlight status."
+      },
+      "purposeScore": {
+        "product": 25,
+        "audience": 15,
+        "value": 15,
+        "mechanism": 15,
+        "proof": 14,
+        "nextAction": 15,
+        "total": 99
+      },
+      "mismatches": []
+    }
+  },
+  "ownerFeedback": {
+    "decision": "delegated",
+    "note": "The owner delegated fleet landing repairs and asked the agent to continue without project-by-project feedback pauses."
+  }
+}
